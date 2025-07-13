@@ -1,0 +1,28 @@
+{
+  "sintomas": {
+    "dolor de cabeza": "Deberías consultar a un neurólogo.",
+    "dificultad para respirar": "Consulta con un neumólogo.",
+    "fiebre": "Visita a un médico general si persiste más de 3 días."
+  },
+  "especialidades": {
+    "médico general": "Trata dolencias comunes y puede referirte a un especialista.",
+    "internista": "Especialista en enfermedades internas complejas.",
+    "dermatólogo": "Trata problemas de piel.",
+    "alergias": "Consulta con un alergólogo."
+  },
+  "servicios": {
+    "horarios": "Lunes a viernes de 8:00 a.m. a 5:00 p.m.",
+    "citas": "Agenda en línea o llama al 1234-5678.",
+    "urgencias": "Atendemos urgencias las 24 horas."
+  },
+  "prevencion": {
+    "estres": "Habla con un psicólogo si te sientes abrumado.",
+    "chequeos": "Chequeos anuales: presión, colesterol, glucosa.",
+    "nutrición": "Contamos con nutricionistas para control de peso."
+  },
+  "administrativo": {
+    "registro": "Requiere DUI y tarjeta de vacunación.",
+    "seguros": "Aceptamos seguros médicos privados.",
+    "historial": "Solicítalo por web o en recepción."
+  }
+}
