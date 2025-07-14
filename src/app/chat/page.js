@@ -29,7 +29,7 @@ export default function ChatPage() {
 
   return (
     <main className={styles.chatbot}>
-      <h2>Asistente Médico Virtual</h2>
+      <h2 className='text-green-500'>Asistente Médico Virtual</h2>
       <div className={styles.chatWindow}>
         {messages.map((msg, i) => (
           <div key={i}>
