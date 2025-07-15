@@ -28,6 +28,10 @@ export default function ChatPage() {
     setInput('');
   };
 
+  const handleSubmit = (e) => {
+    console.log('handleSubmit');
+  }
+
   const quickQuestions = [
     "Tengo dolor de cabeza y fiebre",
     "Tengo estrés",
@@ -187,6 +191,28 @@ export default function ChatPage() {
                   ))}
                 </div>
               </div>
+            </div>
+
+            {/* Input de mensaje */}
+            <div className="border-t border-gray-100 bg-white mt-4">
+              <form onSubmit={handleSubmit} className="flex space-x-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Describe tu síntoma o pregunta..."
+                  className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+                <button
+                  type="submit"
+                  className="bg-green-600 text-white rounded-lg px-4 py-2 hover:bg-green-700 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-send h-4 w-4">
+                    <path d="m22 2-7 20-4-9-9-4Z"></path>
+                    <path d="M22 2 11 13"></path>
+                  </svg>
+                </button>
+              </form>
             </div>
           </section>
         </div>
