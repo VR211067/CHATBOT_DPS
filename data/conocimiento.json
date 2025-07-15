@@ -1,12 +1,12 @@
 {
   "sintomas": {
-    "dolor de cabeza": "Deberías consultar a un neurólogo.",
+    "Tengo dolor de cabeza y fiebre": "El dolor de cabeza y la fiebre pueden ser síntomas de una infección. Te recomendamos que consultes a un médico general para una evaluación adecuada.",
     "dificultad para respirar": "Consulta con un neumólogo.",
     "fiebre": "Visita a un médico general si persiste más de 3 días."
   },
   "especialidades": {
     "médico general": "Trata dolencias comunes y puede referirte a un especialista.",
-    "internista": "Especialista en enfermedades internas complejas.",
+    "¿Necesito un internista?": "Un internista se especializa en enfermedades internas y puede ayudarte con problemas complejos. Para agendar una cita, puedes visitar nuestras instalaciones o llamar al número de contacto.",
     "dermatólogo": "Trata problemas de piel.",
     "alergias": "Consulta con un alergólogo."
   },
@@ -16,12 +16,12 @@
     "urgencias": "Atendemos urgencias las 24 horas."
   },
   "prevencion": {
-    "estres": "Habla con un psicólogo si te sientes abrumado.",
+    "Tengo estrés": "El estrés puede afectar tu salud. Considera técnicas de relajación o consulta a un psicólogo.",
     "chequeos": "Chequeos anuales: presión, colesterol, glucosa.",
     "nutrición": "Contamos con nutricionistas para control de peso."
   },
   "administrativo": {
-    "registro": "Requiere DUI y tarjeta de vacunación.",
+    "Quiero registrarme": "Puedes registrarte en recepción, solo necesitas tu documento de identidad.",
     "seguros": "Aceptamos seguros médicos privados.",
     "historial": "Solicítalo por web o en recepción."
   }
