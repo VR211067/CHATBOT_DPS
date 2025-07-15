@@ -1,8 +1,8 @@
 {
   "sintomas": {
     "Tengo dolor de cabeza y fiebre": "El dolor de cabeza y la fiebre pueden ser síntomas de una infección. Te recomendamos que consultes a un médico general para una evaluación adecuada.",
-    "dificultad para respirar": "Consulta con un neumólogo.",
-    "fiebre": "Visita a un médico general si persiste más de 3 días."
+    "Tengo dificultad para respirar": "Si la dificultad es leve y ocasional, intenta descansar y mantenerte hidratado. Si es severa o persistente, busca atención médica inmediata.",
+    "¿Qué hago si tengo fiebre alta por más de tres días?": "Si tienes fiebre alta por más de tres días, es importante que consultes a un médico. Podría ser un signo de una infección que necesita tratamiento."
   },
   "especialidades": {
     "médico general": "Trata dolencias comunes y puede referirte a un especialista.",
@@ -11,7 +11,7 @@
     "alergias": "Consulta con un alergólogo."
   },
   "servicios": {
-    "horarios": "Lunes a viernes de 8:00 a.m. a 5:00 p.m.",
+    "horarios": "Lunes a sábado de 8:00 a.m. a 10:00 p.m.",
     "citas": "Agenda en línea o llama al 1234-5678.",
     "urgencias": "Atendemos urgencias las 24 horas."
   },

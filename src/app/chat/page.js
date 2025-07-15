@@ -1,14 +1,34 @@
 'use client';
 
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import conocimiento from '../../../data/conocimiento.json';
+
+const quickQuestions = [
+  "Tengo dolor de cabeza y fiebre",
+  "Tengo dificultad para respirar",
+  "¿Qué hago si tengo fiebre alta por más de tres días?",
+  "Tengo estrés",
+  "Quiero registrarme",
+  "¿Necesito un internista?",
+];
+
+function getRandomItems(array, count) {
+  const shuffled = [...array].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
 
 export default function ChatPage() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    setQuestions(getRandomItems(quickQuestions, 5));
+  }, []);
 
   const handleFrequentlyQuestions = (question) => {
     const value = question;
@@ -47,7 +67,7 @@ export default function ChatPage() {
   const sendMessage = async (userInput) => {
     const systemPrompt = {
       role: 'system',
-      content: 'Eres un asistente médico virtual de la Clínica Salud+. Tu dirección es Avenida 123, San Salvador y tu número es 0000-0000. Responde con cortesía, precisión y empatía.'
+      content: 'Eres un asistente médico virtual. Tu dirección es Calle 123, San Salvador y tu número es 0000-0000. Responde de manera clara y empática.'
     };
 
     const userMessage = {
@@ -78,13 +98,6 @@ export default function ChatPage() {
       return { role: 'assistant', content: 'Hubo un error al procesar tu consulta. Intenta nuevamente.' };
     }
   };
-
-  const quickQuestions = [
-    "Tengo dolor de cabeza y fiebre",
-    "Tengo estrés",
-    "Quiero registrarme",
-    "¿Necesito un internista?",
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white">
@@ -142,7 +155,7 @@ export default function ChatPage() {
 
           {/* area de chat */}
           <section className="lg:col-span-3">
-            <div className="h-[600px] flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="h-[620px] flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="border-b border-gray-300 p-5">
                 <div className="flex items-center space-x-3">
                   <div className="bg-gray-200 p-2 rounded-full">
@@ -184,7 +197,7 @@ export default function ChatPage() {
                     <div className="space-y-2 px-5">
                       <p className="text-sm font-medium text-gray-700 mb-3">Preguntas frecuentes:</p>
                       <div className="grid gap-2">
-                        {quickQuestions.map((question, index) => (
+                        {questions.map((question, index) => (
                           <button
                             type="button"
                             key={index}
