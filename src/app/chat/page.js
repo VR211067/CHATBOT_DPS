@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { useState } from 'react';
 import Link from 'next/link';
 import conocimiento from '../../../data/conocimiento.json';
@@ -7,6 +8,7 @@ import conocimiento from '../../../data/conocimiento.json';
 export default function ChatPage() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleFrequentlyQuestions = (question) => {
     const value = question;
@@ -28,9 +30,54 @@ export default function ChatPage() {
     setInput('');
   };
 
-  const handleSubmit = (e) => {
-    console.log('handleSubmit');
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const userMessage = { role: 'user', content: input };
+    setMessages([...messages, userMessage]);
+    setInput('');
+    setLoading(true);
+
+    const assistantReply = await sendMessage(input);
+    setMessages(prev => [...prev, assistantReply]);
+    setLoading(false);
+  };
+
+  const sendMessage = async (userInput) => {
+    const systemPrompt = {
+      role: 'system',
+      content: 'Eres un asistente médico virtual de la Clínica Salud+. Tu dirección es Avenida 123, San Salvador y tu número es 0000-0000. Responde con cortesía, precisión y empatía.'
+    };
+
+    const userMessage = {
+      role: 'user',
+      content: userInput
+    };
+
+    const options = {
+      method: 'POST',
+      url: 'https://chatgpt-42.p.rapidapi.com/chatgpt',
+      headers: {
+        'x-rapidapi-key': process.env.NEXT_PUBLIC_API_URL,
+        'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
+        'Content-Type': 'application/json'
+      },
+      data: {
+        messages: [systemPrompt, userMessage],
+        web_access: false
+      }
+    };
+
+    try {
+      const response = await axios.request(options);
+      const reply = response.data.result || 'Lo siento, no pude responder en este momento.';
+      return { role: 'assistant', content: reply };
+    } catch (error) {
+      console.error('Error al consultar chatgpt-42:', error);
+      return { role: 'assistant', content: 'Hubo un error al procesar tu consulta. Intenta nuevamente.' };
+    }
+  };
 
   const quickQuestions = [
     "Tengo dolor de cabeza y fiebre",
@@ -162,14 +209,14 @@ export default function ChatPage() {
                       <div
                         className={`flex space-x-3 max-w-[80%] ${message.role === "user" ? "flex-row-reverse space-x-reverse" : ""}`}
                       >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${message.role === "user" ? "bg-blue-100" : "bg-green-100"}`}>
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${message.role === "user" ? "bg-blue-100" : "bg-green-100"}`}>
                           {message.role === "user" ? (
                             <svg className="h-4 w-4 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                               <circle cx="12" cy="7" r="4" />
                               <path d="M5.5 21a7.5 7.5 0 0 1 13 0" />
                             </svg>
                           ) : (
-                            <svg className="h-4 w-4 text-green-600" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                            <svg className="h-5 w-5 text-green-600" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                               <path d="M12 8V4H8"></path>
                               <rect width="16" height="12" x="4" y="8" rx="2"></rect>
                               <path d="M2 14h2"></path>
@@ -190,22 +237,41 @@ export default function ChatPage() {
                     </div>
                   ))}
                 </div>
+
+                {loading && (
+                  <div className="flex justify-start p-5">
+                    <div className="flex space-x-3 items-center">
+                      <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                        <svg className="animate-spin h-4 w-4 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                      </div>
+                      <div className="bg-gray-100 text-gray-900 rounded-lg px-4 py-2">
+                        <p className="text-sm">Escribiendo respuesta...</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
             {/* Input de mensaje */}
             <div className="border-t border-gray-100 bg-white mt-4">
-              <form onSubmit={handleSubmit} className="flex space-x-2">
-                <input
+              <form onSubmit={handleSubmit} className="flex items-end space-x-2">
+                <textarea
+                  rows="2"
                   type="text"
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 150) setInput(e.target.value);
+                  }}
                   placeholder="Describe tu síntoma o pregunta..."
-                  className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
                 />
                 <button
                   type="submit"
-                  className="bg-green-600 text-white rounded-lg px-4 py-2 hover:bg-green-700 transition-colors"
+                  className="bg-green-600 text-white rounded-lg px-4 py-3 hover:bg-green-700 transition-colors cursor-pointer"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-send h-4 w-4">
                     <path d="m22 2-7 20-4-9-9-4Z"></path>
@@ -214,6 +280,9 @@ export default function ChatPage() {
                 </button>
               </form>
             </div>
+            <p className="text-xs text-gray-500 ml-2">
+              {input.length}/150 caracteres
+            </p>
           </section>
         </div>
       </main>
