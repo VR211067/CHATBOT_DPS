@@ -13,6 +13,7 @@ Este chatbot responde preguntas comunes y ejecuta comandos básicos utilizando i
 - 🌐 HTML & CSS
 - 🗃️ Node.js 
 - ⚙️ UDB Members
+- 🤖 GitHub Copilot
 
 ---
 
@@ -27,3 +28,7 @@ npm install o yarn
 
 # 3. Ejecutar en modo desarrollo
 npm run dev
+
+---
+
+GitHub Copilot fue integrado en el desarrollo de esta aplicación utilizando JavaScript y React, facilitando la generación automática de código y acelerando tareas repetitivas. Se utilizó especialmente para diseñar el header, configurar el redireccionamiento hacia el chatbot y construir la sección de preguntas frecuentes (FAQ), permitiendo realizarlo de manera más eficiente gracias a sus sugerencias inteligentes.
