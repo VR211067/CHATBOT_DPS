@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Header } from './components/header';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import CardInfo from './components/CardInfo';
 
 export default function Home() {
   return (
@@ -45,48 +47,39 @@ export default function Home() {
 
           {/* Sección de Características */}
           <section className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="border border-green-100 hover:shadow-lg transition-shadow bg-white rounded-xl">
-              <div className="p-8 text-center">
-                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle h-8 w-8">
-                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">Consulta Inteligente</h3>
-                <p className="text-gray-600">
-                  Describe tus síntomas y recibe orientación personalizada sobre los pasos a seguir.
-                </p>
-              </div>
-            </div>
+            <CardInfo
+              title="Consulta Inteligente"
+              description="Describe tus síntomas y recibe orientación personalizada sobre los pasos a seguir."
+              backgroundIcon="bg-green-100 text-green-600"
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle h-8 w-8">
+                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                </svg>
+              }
+            />
 
-            <div className="border border-blue-100 hover:shadow-lg transition-shadow bg-white rounded-xl">
-              <div className="p-8 text-center">
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-zap h-8 w-8">
-                    <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">Fácil de usar</h3>
-                <p className="text-gray-600">
-                  Interactúa con nuestro chatbot de manera natural y sencilla, como si estuvieras hablando con un amigo.
-                </p>
-              </div>
-            </div>
+            <CardInfo
+              title="Fácil de usar"
+              description="Interactúa con nuestro chatbot de manera natural y sencilla, como si estuvieras hablando con un amigo."
+              backgroundIcon="bg-blue-100 text-blue-600"
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-zap h-8 w-8">
+                  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+                </svg>
+              }
+            />
 
-            <div className="border border-purple-100 hover:shadow-lg transition-shadow bg-white rounded-xl">
-              <div className="p-8 text-center">
-                <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-purple-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock h-8 w-8 text-purple-600">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">Disponible 24/7</h3>
-                <p className="text-gray-600">
-                  Accede a orientación médica en cualquier momento, desde cualquier lugar.
-                </p>
-              </div>
-            </div>
+            <CardInfo
+              title="Disponible 24/7"
+              description="Accede a orientación médica en cualquier momento, desde cualquier lugar."
+              backgroundIcon="bg-purple-100 text-purple-600"
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock h-8 w-8">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              }
+            />
           </section>
 
           {/* Sección para Call to Action detallado */}
@@ -120,21 +113,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-50 border-t border-gray-200 py-8">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className="bg-green-600 p-2 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-stethoscope h-6 w-6 text-white">
-                <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path>
-                <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"></path>
-                <circle cx="20" cy="10" r="2"></circle>
-              </svg>
-            </div>
-            <span className="text-lg font-semibold text-gray-900">Clínica Salud+</span>
-          </div>
-          <p className="text-gray-600 text-sm">© 2025 Clínica Salud+. Un espacio para tu salud y bienestar.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
